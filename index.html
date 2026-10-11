@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BusinessOS</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#0b1020;color:#f4f7ff}
+header{padding:22px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #26334c}
+.logo{font-size:23px;font-weight:bold;color:#7ce5d4}
+main{max-width:1000px;margin:55px auto;padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+h1{font-size:48px;line-height:1.1}
+h1 span{color:#7ce5d4}
+p{color:#aab7ce;line-height:1.7}
+.card{background:#121d32;border:1px solid #2b3a55;border-radius:18px;padding:25px}
+.tabs{display:flex;gap:10px;margin-bottom:22px}
+button{padding:12px;border:0;border-radius:9px;background:#253552;color:white;cursor:pointer;font-weight:bold}
+.tabs button{flex:1}
+.tabs .active,.submit{background:#79dfd1;color:#071421}
+input{width:100%;padding:13px;margin:8px 0 17px;background:#0b1425;border:1px solid #34445f;border-radius:9px;color:white}
+.submit{width:100%;margin-top:8px}
+.google{width:100%;margin-top:12px}
+.note{font-size:12px}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:25px}
+.feature{padding:15px;border:1px solid #26334c;border-radius:12px;background:#111a2b}
+@media(max-width:700px){main{grid-template-columns:1fr;margin:25px auto;gap:25px}h1{font-size:39px}header{padding:18px}}
+</style>
+</head>
+<body>
+<header><div class="logo">◆ BusinessOS</div><small>Early access</small></header>
+<main>
+<section>
+<p>YOUR BUSINESS, IN ONE PLACE</p>
+<h1>Work smarter.<br><span>Grow faster.</span></h1>
+<p>Manage your sales, expenses, inventory and customers from one simple workspace. Get ready for AI-powered business insights.</p>
+<div class="features">
+<div class="feature">📦<br><b>Inventory</b><p>Organise your stock.</p></div>
+<div class="feature">📊<br><b>Sales & expenses</b><p>Track your money.</p></div>
+<div class="feature">✨<br><b>AI assistant</b><p>Business insights.</p></div>
+<div class="feature">🇳🇬<br><b>Made for Nigeria</b><p>Designed for local businesses.</p></div>
+</div>
+</section>
+<section class="card">
+<h2 id="heading">Welcome back</h2>
+<p id="description">Log in to your BusinessOS workspace.</p>
+<div class="tabs">
+<button id="loginTab" class="active" onclick="setMode('login')">Log in</button>
+<button id="signupTab" onclick="setMode('signup')">Sign up</button>
+</div>
+<form onsubmit="event.preventDefault();document.getElementById('message').textContent='Authentication is not connected yet. No account has been created.'">
+<div id="nameField" style="display:none"><label>Your name</label><input id="name" placeholder="Your name"></div>
+<label>Email address</label>
+<input type="email" placeholder="you@example.com" required>
+<label>Password</label>
+<input type="password" placeholder="At least 8 characters" minlength="8" required>
+<button class="submit" type="submit" id="submitButton">Log in</button>
+</form>
+<button class="google" onclick="document.getElementById('message').textContent='Google authentication still needs configuration.'">Continue with Google</button>
+<p id="message" class="note"></p>
+<p class="note">Secure account access is being configured. This preview does not save passwords or create accounts.</p>
+</section>
+</main>
+<script>
+function setMode(mode){
+const signup=mode==='signup';
+document.getElementById('heading').textContent=signup?'Create your account':'Welcome back';
+document.getElementById('description').textContent=signup?'Set up your BusinessOS workspace.':'Log in to your BusinessOS workspace.';
+document.getElementById('nameField').style.display=signup?'block':'none';
+document.getElementById('name').required=signup;
+document.getElementById('submitButton').textContent=signup?'Create account':'Log in';
+document.getElementById('loginTab').classList.toggle('active',!signup);
+document.getElementById('signupTab').classList.toggle('active',signup);
+document.getElementById('message').textContent='';
+}
+</script>
+</body>
+</html>
